@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: pttg-postgres
   labels:
-    version: first
+    version: {{.VERSION}}
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         name: pttg-postgres
-        version: first
+        version: {{.VERSION}}
     spec:
       imagePullSecrets:
       - name: registrykey

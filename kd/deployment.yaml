@@ -56,6 +56,11 @@ spec:
               secretKeyRef:
                 name: pttg-rds-access
                 key: password
+          - name: ROOT_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pttg-rds-access
+                key: root_password
         resources:
          limits:
           memory: "100Mi"

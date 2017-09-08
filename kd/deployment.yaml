@@ -22,10 +22,12 @@ spec:
       imagePullSecrets:
       - name: registrykey
       containers:
-      - name: pttg-postgres
+      - name: pttg-postgres-bootstrap
         image: quay.io/ukhomeofficedigital/pttg-postgres:latest
         imagePullPolicy: Always
         env:
+          - name: MODE
+            value: "bootstrap"
           - name: PTTG_DB_HOSTNAME
             valueFrom:
               secretKeyRef:
@@ -61,6 +63,52 @@ spec:
               secretKeyRef:
                 name: pttg-rds-access
                 key: root_password
+          - name: IP_DB_QUERY_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: query_username
+          - name: IP_DB_QUERY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: query_password
+      - name: pttg-postgres-query
+        image: quay.io/ukhomeofficedigital/pttg-postgres:latest
+        imagePullPolicy: Always
+        env:
+          - name: MODE
+            value: "query"
+          - name: PTTG_DB_HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: pttg-rds-access
+                key: endpoint
+          - name: PTTG_DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: pttg-rds-access
+                key: port
+          - name: PTTG_DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: pttg-rds-access
+                key: database_name
+          - name: IP_SCHEMA_NAME
+            valueFrom:
+              secretKeyRef:
+                name: pttg-rds-access
+                key: schema
+          - name: IP_DB_QUERY_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: query_username
+          - name: IP_DB_QUERY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: query_password
         resources:
          limits:
           memory: "100Mi"

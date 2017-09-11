@@ -44,6 +44,15 @@ metadata:
                   }
                 },
                 {
+                  "name": "IP_SCHEMA_NAME",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "db-secrets",
+                      "key": "schema_name"
+                    }
+                  }
+                },
+                {
                   "name": "IP_DB_USERNAME",
                   "valueFrom": {
                     "secretKeyRef": {
@@ -129,6 +138,11 @@ spec:
               secretKeyRef:
                 name: pttg-rds-access
                 key: database
+          - name: IP_SCHEMA_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: schema_name
           - name: IP_DB_QUERY_USERNAME
             valueFrom:
               secretKeyRef:

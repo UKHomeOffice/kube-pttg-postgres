@@ -56,8 +56,8 @@ metadata:
                   "name": "IP_DB_USERNAME",
                   "valueFrom": {
                     "secretKeyRef": {
-                      "name": "pttg-rds-access",
-                      "key": "username"
+                      "name": "db-secrets",
+                      "key": "application_username"
                     }
                   }
                 },
@@ -65,8 +65,8 @@ metadata:
                   "name": "IP_DB_PASSWORD",
                   "valueFrom": {
                     "secretKeyRef": {
-                      "name": "pttg-rds-access",
-                      "key": "password"
+                      "name": "db-secrets",
+                      "key": "application_password"
                     }
                   }
                 },

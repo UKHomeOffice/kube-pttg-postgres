@@ -108,6 +108,42 @@ spec:
                 }
               }
             }
+            {
+              "name": "HMRC_AC_DB_NAME",
+              "valueFrom": {
+                "secretKeyRef": {
+                  "name": "db-secrets",
+                  "key": "hmrc_ac_database"
+                }
+              }
+            }
+            {
+              "name": "HMRC_AC_DB_SCHEMA_NAME",
+              "valueFrom": {
+                "secretKeyRef": {
+                  "name": "db-secrets",
+                  "key": "hmrc_ac_schema_name"
+                }
+              }
+            }
+            {
+              "name": "HMRC_AC_DB_USERNAME",
+              "valueFrom": {
+                "secretKeyRef": {
+                  "name": "db-secrets",
+                  "key": "hmrc_ac_username"
+                }
+              }
+            }
+            {
+              "name": "HMRC_AC_DB_PASSWORD",
+              "valueFrom": {
+                "secretKeyRef": {
+                  "name": "db-secrets",
+                  "key": "hmrc_ac_password"
+                }
+              }
+            }
           ]
     }
 ]'

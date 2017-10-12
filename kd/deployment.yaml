@@ -107,7 +107,7 @@ spec:
                   "key": "query_password"
                 }
               }
-            }
+            },
             {
               "name": "HMRC_AC_DB_NAME",
               "valueFrom": {
@@ -116,7 +116,7 @@ spec:
                   "key": "hmrc_ac_database"
                 }
               }
-            }
+            },
             {
               "name": "HMRC_AC_DB_SCHEMA_NAME",
               "valueFrom": {
@@ -125,7 +125,7 @@ spec:
                   "key": "hmrc_ac_schema_name"
                 }
               }
-            }
+            },
             {
               "name": "HMRC_AC_DB_USERNAME",
               "valueFrom": {
@@ -134,7 +134,7 @@ spec:
                   "key": "hmrc_ac_username"
                 }
               }
-            }
+            },
             {
               "name": "HMRC_AC_DB_PASSWORD",
               "valueFrom": {

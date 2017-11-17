@@ -2,18 +2,23 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: pttg-postgres
+  name: eue-api-db-provision
   labels:
+    application: eue-api
     version: {{.VERSION}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: pttg-postgres
+      name: eue-api-db-provision
   template:
     metadata:
       labels:
-        name: pttg-postgres
+        name: eue-api-db-provision
+        deployment: eue-api-db-provision
+        service: eue-api-db-provision
+        schedule: businesshours
+        costcentre: EUE-API
         version: {{.VERSION}}
       annotations:
         pod.beta.kubernetes.io/init-containers: '
@@ -152,7 +157,7 @@ spec:
       - name: registrykey
       containers:
       - name: pttg-postgres-query
-        image: quay.io/ukhomeofficedigital/pttg-postgres:latest
+        image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
         imagePullPolicy: Always
         env:
           - name: MODE
@@ -210,7 +215,7 @@ spec:
         resources:
          limits:
           memory: "100Mi"
-          cpu: 100m
+          cpu: 200m
          requests:
           memory: "50Mi"
-          cpu: 100m
+          cpu: 200m

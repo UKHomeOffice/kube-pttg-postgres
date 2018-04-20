@@ -22,7 +22,7 @@ spec:
       initContainers:
         
         - name: pttg-postgres-bootstrap
-          image: quay.io/ukhomeofficedigital/pttg-postgres:latest
+          image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true
@@ -101,7 +101,7 @@ spec:
 
       containers:
         - name: pttg-postgres-query
-          image: quay.io/ukhomeofficedigital/pttg-postgres:latest
+          image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true

@@ -103,6 +103,12 @@ spec:
         - name: pttg-postgres-query
           image: quay.io/ukhomeofficedigital/pttg-postgres:latest
           imagePullPolicy: Always
+          securityContext:
+            runAsNonRoot: true
+            capabilities:
+              drop:
+               - SETUID
+               - SETGID
           env:
             - name: MODE
               value: "query"

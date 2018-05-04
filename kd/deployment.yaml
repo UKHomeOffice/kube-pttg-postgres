@@ -36,17 +36,17 @@ spec:
             - name: PTTG_DB_HOSTNAME
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: endpoint
             - name: PTTG_DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: port
             - name: PTTG_DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: db_name
             - name: IP_SCHEMA_NAME
               valueFrom:
@@ -66,7 +66,7 @@ spec:
             - name: ROOT_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: password
             - name: IP_DB_QUERY_USERNAME
               valueFrom:
@@ -115,17 +115,17 @@ spec:
             - name: PTTG_DB_HOSTNAME
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: endpoint
             - name: PTTG_DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: port
             - name: PTTG_DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: pttg-ip-dev-rds
+                  name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: db_name
             - name: IP_SCHEMA_NAME
               valueFrom:

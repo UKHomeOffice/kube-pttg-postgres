@@ -3,6 +3,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: pttg-postgres
+  annotations:
+    downscaler/uptime: {{.UPTIME_SCHEDULE}}
   labels:
     version: {{.VERSION}}
 spec:
@@ -18,9 +20,9 @@ spec:
     spec:
       imagePullSecrets:
       - name: registrykey
-      
+
       initContainers:
-        
+
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always

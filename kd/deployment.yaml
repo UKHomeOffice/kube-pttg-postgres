@@ -18,6 +18,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: registrykey
-      initContainers:
+      containers:
         - name: truststore
           image: quay.io/ukhomeofficedigital/cfssl-sidekick-jks:v0.0.6

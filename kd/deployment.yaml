@@ -16,11 +16,7 @@ spec:
         name: pttg-postgres
         version: {{.VERSION}}
     spec:
-      imagePullSecrets:
-      - name: registrykey
-
       initContainers:
-
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always

@@ -41,6 +41,7 @@ spec:
                 secretKeyRef:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: management_secret_key
+
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always

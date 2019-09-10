@@ -11,10 +11,6 @@ spec:
     matchLabels:
       name: pttg-postgres
   template:
-    metadata:
-      labels:
-        name: pttg-postgres
-        version: {{.VERSION}}
     spec:
       initContainers:
 

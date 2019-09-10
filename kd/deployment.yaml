@@ -31,8 +31,6 @@ spec:
                 - SETUID
                 - SETGID
           env:
-            - name: AWS_DEFAULT_REGION
-              value: 'eu-west-2'
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
@@ -43,12 +41,13 @@ spec:
                 secretKeyRef:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: management_secret_key
+            - name: AWS_DEFAULT_REGION
+              value: 'eu-west-2'
             - name: RDS_INSTANCE
               valueFrom:
                 secretKeyRef:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: db_name
-  AWS_DEFAULT_REGION
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always

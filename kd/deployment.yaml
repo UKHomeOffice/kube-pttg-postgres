@@ -17,7 +17,7 @@ spec:
         version: {{.VERSION}}
     spec:
       initContainers:
-        - name: pttg-postgres-bootstrap
+        - name: pttg-postgres-bootstraps
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always
           securityContext:

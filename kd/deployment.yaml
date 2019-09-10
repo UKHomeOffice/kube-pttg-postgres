@@ -42,7 +42,7 @@ spec:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: management_secret_key
             - name: AWS_DEFAULT_REGION
-              value: eu-west-2
+              value: 'eu-west-2'
             - name: RDS_INSTANCE
               valueFrom:
                 secretKeyRef:

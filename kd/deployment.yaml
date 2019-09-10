@@ -21,32 +21,6 @@ spec:
 
       initContainers:
 
-        - name: start-rds-instance
-          image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:latest
-          imagePullPolicy: Always
-          securityContext:
-            runAsNonRoot: true
-            capabilities:
-              drop:
-                - SETUID
-                - SETGID
-          env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: management_access_key
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: management_secret_key
-            - name: RDS_INSTANCE
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: db_name
-
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}
           imagePullPolicy: Always

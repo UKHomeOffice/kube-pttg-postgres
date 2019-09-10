@@ -28,9 +28,6 @@ spec:
               drop:
                 - SETUID
                 - SETGID
-          env:
-            - name: AWS_DEFAULT_REGION
-              value: 'eu-west-2'
 
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}

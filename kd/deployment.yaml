@@ -29,8 +29,6 @@ spec:
                 - SETUID
                 - SETGID
           env:
-            - name: AWS_DEFAULT_REGION
-              value: 'eu-west-2'
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:

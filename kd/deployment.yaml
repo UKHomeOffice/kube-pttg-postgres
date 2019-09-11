@@ -22,7 +22,7 @@ spec:
       initContainers:
 
         - name: start-rds-instance
-          image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:latest
+          image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.0
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true

@@ -30,9 +30,7 @@ spec:
               drop:
                 - SETUID
                 - SETGID
-          command: ["/bin/bash", "-ce"]
-          args:
-            - './scripts/start-rds.sh'
+          command: ["/bin/bash", "-ce", "./scripts/start-rds.sh"]
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:

@@ -10,6 +10,7 @@ fi
 if [[ ${ENVIRONMENT} == "pr" ]] ; then
     echo "deploy ${VERSION} to pr namespace, using PTTG_IP_PR drone secret"
     export KUBE_TOKEN=${PTTG_IP_PR}
+    export STOP_RDS_EVERY_NIGHT=false
 else
     if [[ ${ENVIRONMENT} == "test" ]] ; then
         echo "deploy ${VERSION} to test namespace, using PTTG_IP_TEST drone secret"
@@ -18,6 +19,7 @@ else
         echo "deploy ${VERSION} to dev namespace, using PTTG_IP_DEV drone secret"
         export KUBE_TOKEN=${PTTG_IP_DEV}
     fi
+    export STOP_RDS_EVERY_NIGHT=true
 fi
 
 if [[ -z ${KUBE_TOKEN} ]] ; then
@@ -45,4 +47,5 @@ kd --insecure-skip-tls-verify \
     -f networkPolicy.yaml \
     -f deployment.yaml \
     -f service.yaml \
-    -f stop-rds-cronjob.yaml
+    -f stop-rds-cronjob.yaml \
+    -f rds-configmap.yaml

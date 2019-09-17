@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: rds-config
   labels:
+    name: pttg-postgres-rds-config
     application: pttg-postgres
 data:
-  stop_rds_every_night: {{.STOP_RDS_EVERY_NIGHT}}
+  stop_rds_every_night: '{{.STOP_RDS_EVERY_NIGHT}}'

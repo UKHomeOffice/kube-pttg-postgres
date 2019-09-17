@@ -23,7 +23,7 @@ spec:
               securityContext:
                 runAsNonRoot: true
                 runAsUser: 1000
-          command: ["/bin/bash", "-ce", "source ./scripts/common.sh && ./scripts/stop-rds.sh"]
+          command: ["/bin/bash", "-ce", "./scripts/stop-rds.sh"]
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:

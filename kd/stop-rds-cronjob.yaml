@@ -18,32 +18,32 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: pttg-postgres-stop-rds
-              image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-12559-remove-entrypoint-tag
-              securityContext:
-                runAsNonRoot: true
-                runAsUser: 1000
-          command: ["/bin/bash", "-ce", "./scripts/stop-rds.sh"]
-          env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: management_access_key
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: management_secret_key
-            - name: AWS_DEFAULT_REGION
-              value: eu-west-2
-            - name: RDS_INSTANCE
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: db_name
-            - name: STOP_RDS
-              valueFrom:
-                secretKeyRef:
-                  name: pttg-ip-{{.ENVIRONMENT}}-rds
-                  key: stop_rds
+          - name: pttg-postgres-stop-rds
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-12559-remove-entrypoint-tag
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+            command: ["/bin/bash", "-ce", "./scripts/stop-rds.sh"]
+            env:
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_access_key
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_secret_key
+              - name: AWS_DEFAULT_REGION
+                value: eu-west-2
+              - name: RDS_INSTANCE
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: db_name
+              - name: STOP_RDS
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: stop_rds

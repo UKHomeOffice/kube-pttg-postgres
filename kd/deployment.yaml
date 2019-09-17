@@ -49,6 +49,8 @@ spec:
                 secretKeyRef:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: db_name
+            - name: STOP_RDS
+            - value: false
 
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}

@@ -19,7 +19,8 @@ spec:
           restartPolicy: Never
           containers:
           - name: pttg-postgres-stop-rds
-            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-12559-remove-entrypoint-tag-1
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-12559-remove-entrypoint-2
+            imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000

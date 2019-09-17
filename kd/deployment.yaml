@@ -53,7 +53,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: rds-config
-                  key: STOP_RDS_EVERY_NIGHT
+                  key: stop_rds_every_night
 
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}

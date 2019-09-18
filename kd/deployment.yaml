@@ -49,11 +49,6 @@ spec:
                 secretKeyRef:
                   name: pttg-ip-{{.ENVIRONMENT}}-rds
                   key: db_name
-            - name: STOP_RDS_EVERY_NIGHT
-              valueFrom:
-                configMapKeyRef:
-                  name: rds-config
-                  key: stop_rds_every_night
 
         - name: pttg-postgres-bootstrap
           image: quay.io/ukhomeofficedigital/pttg-postgres:{{.VERSION}}

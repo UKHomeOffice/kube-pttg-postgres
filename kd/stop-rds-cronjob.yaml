@@ -45,6 +45,6 @@ spec:
                     key: db_name
               - name: STOP_RDS
                 valueFrom:
-                  secretKeyRef:
+                  configMapKeyRef:
                     name: pttg-ip-{{.ENVIRONMENT}}-rds
-                    key: stop_rds
+                    key: stop_rds_every_night

@@ -22,7 +22,7 @@ spec:
       initContainers:
 
         - name: start-rds-instance
-          image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-12559-remove-entrypoint-2
+          image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.2
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true

@@ -31,6 +31,6 @@ cd kd || exit 1
 kd --insecure-skip-tls-verify \
     -f networkPolicy.yaml \
     -f rds-configmap.yaml\
-    -f deployment.yaml \
     -f service.yaml \
-    -f stop-rds-cronjob.yaml
+    -f stop-rds-cronjob.yaml \
+    -f deployment.yaml

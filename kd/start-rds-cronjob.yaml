@@ -1,0 +1,50 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pttg-postgres-start-rds-cronjob
+  labels:
+    version: {{.VERSION}}
+    application: pttg-ip-api
+spec:
+  schedule: "0 7 * * *"
+  successfulJobsHistoryLimit: 12
+  failedJobsHistoryLimit: 12
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            name: pttg-postgres-start-rds-cronjob
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: pttg-postgres-start-rds
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.3
+            imagePullPolicy: Always
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+            command: ["/bin/bash", "-ce", "./scripts/start-rds.sh"]
+            env:
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_access_key
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_secret_key
+              - name: AWS_DEFAULT_REGION
+                value: eu-west-2
+              - name: RDS_INSTANCE
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: db_name
+              - name: START_RDS
+                valueFrom:
+                  configMapKeyRef:
+                    name: rds-config
+                    key: start_rds_every_morning

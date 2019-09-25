@@ -7,3 +7,4 @@ metadata:
     application: pttg-postgres
 data:
   stop_rds_every_night: "{{.STOP_RDS_EVERY_NIGHT}}"
+  start_rds_every_morning: "{{.START_RDS_EVERY_MORNING}}"

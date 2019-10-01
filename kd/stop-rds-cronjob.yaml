@@ -19,7 +19,7 @@ spec:
           restartPolicy: Never
           containers:
           - name: pttg-postgres-stop-rds
-            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-26876
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.4
             imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true

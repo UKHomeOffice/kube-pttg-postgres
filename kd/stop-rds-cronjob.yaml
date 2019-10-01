@@ -19,12 +19,12 @@ spec:
           restartPolicy: Never
           containers:
           - name: pttg-postgres-stop-rds
-            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.3
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-26876
             imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
-            command: ["/bin/bash", "-ce", "./scripts/stop-rds.sh"]
+            command: ["/bin/bash", "-ce", 'if [[ "$STOP_RDS" == "true" ]] ; then ./scripts/stop-rds.sh; else echo "Not stopping RDS: STOP_RDS=${STOP_RDS}; fi']
             env:
               - name: AWS_ACCESS_KEY_ID
                 valueFrom:

@@ -19,12 +19,12 @@ spec:
           restartPolicy: Never
           containers:
           - name: pttg-postgres-start-rds
-            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.3
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:EE-26876
             imagePullPolicy: Always
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
-            command: ["/bin/bash", "-ce", "./scripts/start-rds.sh"]
+            command: ["/bin/bash", "-ce", 'if [[ "$START_RDS" == "true" ]] ; then ./scripts/start-rds.sh; else echo "Not starting RDS: START_RDS=${START_RDS}; fi']
             env:
               - name: AWS_ACCESS_KEY_ID
                 valueFrom:

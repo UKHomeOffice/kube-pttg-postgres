@@ -24,7 +24,7 @@ spec:
             securityContext:
               runAsNonRoot: true
               runAsUser: 1000
-            command: ["/bin/bash", "-ce", 'if [[ "$START_RDS" == "true" ]] ; then ./scripts/start-rds.sh; else echo "Not starting RDS: START_RDS=${START_RDS}; fi']
+            command: ["/bin/bash", "-ce", 'if [[ "${START_RDS}" == "true" ]] ; then ./scripts/start-rds.sh; else echo "Not starting RDS: START_RDS=${START_RDS};" fi']
             env:
               - name: AWS_ACCESS_KEY_ID
                 valueFrom:

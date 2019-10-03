@@ -1,0 +1,50 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pttg-postgres-stop-rds-cronjob
+  labels:
+    version: {{.VERSION}}
+    application: pttg-ip-api
+spec:
+  schedule: "0 20 * * *"
+  successfulJobsHistoryLimit: 12
+  failedJobsHistoryLimit: 12
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            name: pttg-postgres-stop-rds-cronjob
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: pttg-postgres-stop-rds
+            image: quay.io/ukhomeofficedigital/docker-pttg-rds-tools:v1.4
+            imagePullPolicy: Always
+            securityContext:
+              runAsNonRoot: true
+              runAsUser: 1000
+            command: ["/bin/bash", "-ce", 'if [[ "${STOP_RDS}" == "true" ]] ; then ./scripts/stop-rds.sh; else echo "Not stopping RDS: STOP_RDS=${STOP_RDS}"; fi']
+            env:
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_access_key
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: management_secret_key
+              - name: AWS_DEFAULT_REGION
+                value: eu-west-2
+              - name: RDS_INSTANCE
+                valueFrom:
+                  secretKeyRef:
+                    name: pttg-ip-{{.ENVIRONMENT}}-rds
+                    key: db_name
+              - name: STOP_RDS
+                valueFrom:
+                  configMapKeyRef:
+                    name: rds-config
+                    key: stop_rds_every_night
